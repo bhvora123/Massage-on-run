@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="39px" height="37px" viewBox="0 0 39 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>House</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-29" sketch:type="MSArtboardGroup" transform="translate(-414.000000, -33.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(-34.000000, -1.000000)">
+                <g id="Location-Details" transform="translate(449.000000, 31.000000)" sketch:type="MSShapeGroup">
+                    <g id="House" transform="translate(0.000000, 4.000000)">
+                        <path d="M34.0837458,35.4063214 L3.27250847,35.4063214 L3.27250847,11.6926071 L18.6779661,2.05296429 L34.0837458,11.6926071 L34.0837458,35.4063214" id="Fill-1" stroke="#D2D2D2" fill="#FFFFFF"></path>
+                        <path d="M35.3316271,17.3529643 C34.8592034,17.3529643 34.3838814,17.2002857 33.9845593,16.8846429 L18.6779661,4.77835714 L3.37137288,16.8846429 C2.43135593,17.6274643 1.0659322,17.4696429 0.321711864,16.5320357 C-0.423152542,15.5941071 -0.264711864,14.2315714 0.674983051,13.4881071 L17.3296102,0.315642857 C18.1198814,-0.309214286 19.2363729,-0.309214286 20.026322,0.315642857 L36.6812712,13.4881071 C37.6209661,14.2315714 37.7790847,15.5941071 37.0345424,16.5320357 C36.6062373,17.0717143 35.9718305,17.3529643 35.3316271,17.3529643" id="Fill-2" fill="#E72600"></path>
+                        <path d="M14.8712034,22.7388214 L22.4850508,22.7388214 L22.4850508,35.2716429 L14.8712034,35.2716429 L14.8712034,22.7388214 Z" id="Fill-3" fill="#B5B5B5"></path>
+                        <path d="M20.1535254,11.03175 C20.1535254,11.8452857 19.4930339,12.5045357 18.6779661,12.5045357 C17.8628983,12.5045357 17.2024068,11.8452857 17.2024068,11.03175 C17.2024068,10.2182143 17.8628983,9.55896429 18.6779661,9.55896429 C19.4930339,9.55896429 20.1535254,10.2182143 20.1535254,11.03175" id="Fill-4" fill="#B5B5B5"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

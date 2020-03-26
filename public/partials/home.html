@@ -1,0 +1,364 @@
+﻿<!-- Navigation -->
+<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="" ng-click="scrollTo('#page-top')">
+                <div class="logo-container">
+                    <div class="logo"><!-- you logо img --></div>
+                    <div class="brand">MASSAGE-ON-RUN</div>
+                </div>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="example">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="" ng-click="scrollTo('#page-top')"></a>
+                </li>
+                <li ng-hide="access_token">
+                    <a class="page-scroll" data-toggle="modal" data-target="#myModal" style="cursor:pointer">Login</a>
+                </li>
+                <li ng-show="access_token">
+                    <a class="page-scroll" href="" ng-click="logout()">Logout</a>
+                </li>
+                <li ng-hide="access_token">
+                    <a class="page-scroll" href="#/signup" ng-click="signUp()">Sign Up</a>
+                </li>
+                <li ng-show="access_token">
+                    <a class="page-scroll" href="#/profile" ng-click="">Profile</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="" ng-click="scrollTo('#services')">Services</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="" ng-click="scrollTo('#about')">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="" ng-click="scrollTo('#team')">Team</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="" ng-click="scrollTo('#contact')">Contact</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div id="page-top">
+    <!-- Navigation -->
+    <div class="parallax filter-gradient blue text-center" data-color="blue">
+        <div class="parallax-background">
+            <img class="img-responsive" src="img/deep_tissue.svg">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <br />
+                    <br />
+                    <div class="description">
+                        <h1>Massage Delivered To You</h1>
+                        <h5>AnyWhere, AnyTime with one of our Trained and Vetted 5 star Therapists.</h5>
+                    </div>
+                    <br />
+                    <br />
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="selectedArea" ng-options="a as (a.title) for a in area" required>
+                                            <option>{{selectedArea.title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="selectedTime" ng-options="t as (t) for t in timeSlot" required>
+                                            <option>{{selectedTime}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div>
+                                            <input type="date" ng-model="selectedDate" id="dateSel" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <a href=""><button class="btn btn-primary form-control" ng-click="bookInfo()">BOOK</button></a>
+                                    </div>
+                                </div>                               
+                            </div>
+
+                            <h4>{{failMessage}}</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------------- Modal -------------------------------->
+    <form>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group loginInput">
+                            <input type="text" class="form-control" required="required" placeholder="Username">
+                        </div>
+                        <div class="input-group loginInput">
+                            <input type="password" class="form-control" required="required" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 grayblock2">
+                    <div class="card card-blue">
+                        <div class="icon">
+                            <img src="img/crossplatformmockup.png" style="height:100px">
+                        </div>
+                        <div class="text">
+                            <h4>Step One</h4>
+                            <p>Book easily in seconds on our Website.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 grayblock">
+                    <div class="card card-blue">
+                        <div class="icon">
+                            <img src="img/therapistsearch.svg" style="height:100px">
+                        </div>
+                        <h4>Step Two</h4>
+                        <p>A Massage Therapist will come to your home in as little as an hour.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 grayblock2">
+                    <div class="card card-blue">
+                        <div class="icon">
+                            <img src="img/home.svg" style="height:100px">
+                        </div>
+                        <h4>Step Three</h4>
+                        <p>Relax and recuperate with a top-quality Massage at your convenience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!----------------------What people think------------------>
+    <div class="section section-testimonial">
+        <div class="container">
+            <h4 class="header-text text-center">What people think</h4>
+            <div id="carousel-example-generic" class="carousel fade" data-ride="carousel">
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item">
+                        <div class="mask">
+                            <img src="img/face-4.jpg">
+                        </div>
+                        <div class="carousel-testimonial-caption">
+                            <p>Jay Z, Producer</p>
+                            <h3>"I absolutely love the massage services. Its professional and amazing..!!"</h3>
+                        </div>
+                    </div>
+                    <div class="item active">
+                        <div class="mask">
+                            <img src="img/face-3.jpg">
+                        </div>
+                        <div class="carousel-testimonial-caption">
+                            <p>Drake, Designer</p>
+                            <h3>"This is one of the most awesome experiences I had ever!"</h3>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="mask">
+                            <img src="img/face-2.jpg">
+                        </div>
+                        <div class="carousel-testimonial-caption">
+                            <p>Jack Ross, Musician</p>
+                            <h3>"Loving this! Just picked the phone and my massage was on its way."</h3>
+                        </div>
+                    </div>
+                </div>
+                <ol class="carousel-indicators carousel-indicators-blue">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- -------------- Ready to book---------------------->
+    <div class="section section-no-padding">
+        <div class="full-background filter-gradient blue" style="background-image:url('../img/deep_tissue_small.jpg');">
+            <div class="container">
+                <div id="ready" class="info">
+                    <h1>Ready for your Massage?</h1>
+                    <p>Same day, in-home massage. Instant relaxation.</p>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="selectedArea" ng-options="a as (a.title) for a in area">
+                                            <option>{{selectedArea.title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select class="form-control" ng-model="selectedTime" ng-options="t as (t) for t in timeSlot">
+                                            <option>{{selectedTime}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <div>
+                                            <input type="date" id="dateSel" ng-model="selectedDate">
+                                            {{selectedDate | date : 'fullDate'}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <button class="btn btn-primary form-control" ng-click="search()">BOOK</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!----------------Contact---------------------->
+    <div class="section section-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">We would love to hear from you</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name (Anonymous if not provided)" ng-model="name" required>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" ng-model="email" required>
+                                    <p ng-show="failEmail" class="help-block text-danger">{{failEmail}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone (Anonymous if not provided)" ng-model="phoneNumber" required>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control resize-none" placeholder="Your Message *" ng-model="message" required></textarea>
+                                    <p ng-show="failMessage" class="help-block text-danger">{{failMessage}}</p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-3 text-center">
+                                <div id="success"></div>
+                                <button type="submit" ng-click="sendEmail()" id="sendMessage" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------------------- Footer ---------------------->
+    <br />
+    <hr />
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; MASSAGE 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li>
+                            <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li>
+                            <a href="http://en.wikipedia.org/wiki/Privacy_policy" target="_blank">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="http://opensource.org/licenses/MIT" target="_blank">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    function login() {
+        console.log("hello");
+    }
+</script>

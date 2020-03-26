@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MASSAGE</title>
+
+    <!--Vendor CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!--Custom CSS-->
+    <link href="css/landing-page.css" rel="stylesheet" />
+
+    <!-- Vendor Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+    <meta charset="utf-8" />
+</head>
+
+<body class="landing-page" ng-app="MassageApp">
+
+    <!-- Inject pages -->
+    <div ng-view></div>
+
+    <!--Vendor JS Lib-->
+    <script src="lib/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js" crossorigin="anonymous"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-animate.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/ui-bootstrap-0.14.2.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.14.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+    <script src="lib/SmoothScroll.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="js/route.js"></script>
+    <script src="js/signUp.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/productService.js"></script>
+    <script src="js/userService.js"></script>
+    <script src="js/profile.js"></script>
+
+    <script>
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 100) {
+                $('nav').addClass('shrink');
+            } else {
+                $('nav').removeClass('shrink');
+            }
+        });
+
+
+        // jQuery for page scrolling feature - requires jQuery Easing plugin
+        $(function () {
+            $('a.page-scroll').bind('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top
+                }, 1500, 'easeInOutExpo');
+                event.preventDefault();
+            });
+        });
+
+
+        
+    </script>
+
+
+</body>
+</html>

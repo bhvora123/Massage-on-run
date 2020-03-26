@@ -1,0 +1,352 @@
+﻿<!-- Navigation -->
+<nav class="navbar navbar-transparent navbar-fixed-top signNav" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#/home" ng-click="scrollTo('#page-top')">
+                <div class="logo-container">
+                    <div class="logo"><!-- you logо img --></div>
+                    <div class="brand">MASSAGE-ON-RUN</div>
+                </div>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="" ng-click="goToHome()"></a>
+                </li>
+                <li ng-hide="access_token">
+                    <a class="page-scroll" href="" ng-click="login()">Login</a>
+                </li>
+                <li ng-show="access_token">
+                    <a class="page-scroll" href="" ng-click="logout()">Logout</a>
+                </li>
+                <li ng-hide="access_token">
+                    <a class="page-scroll" href="" ng-click="signUp()">Sign Up</a>
+                </li>
+                <li ng-show="access_token && !myProfile">
+                    <a class="page-scroll" href="" ng-click="viewMyProfile()">My Profile</a>
+                </li>
+                <li ng-show="access_token && myProfile">
+                    <a class="page-scroll" href="" ng-click="createTrip()">View Bookings</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<!---------------------------------- Modal -------------------------------->
+<form>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-show="fail" class="alert alert-info alert-dismissable">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        {{failMessage}}
+                    </div>
+                    <div class="input-group loginInput">
+                        <input type="email" class="form-control" ng-model="email" placeholder="Your Email">
+                    </div>
+                    <div class="input-group loginInput">
+                        <input type="password" class="form-control" ng-model="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-click="login()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+            <!------------------------------ Area Date Time ---------------------->
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h4><label>Locality: </label><span>{{selectedArea.title}}</span></h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <h4><label>Time: </label><span>{{selectedTime}}</span></h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div>
+                            <input type="date" id="dropdownMenu2" ng-model="selectedDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <!-------------------------Location------------------------------>
+
+            <div class="location">
+                <h4>Details where Massage will take place</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First Name:" ng-model="details.firstName" required="required" data-validation-required-message="Please enter your first name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name:" ng-model="details.lastName" required="required" data-validation-required-message="Please enter your last name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="details.gender" required="required" data-validation-required-message="Please input your gender.">
+                                <option value="" disabled selected>Gender:</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Address:" ng-model="details.address" required="required" data-validation-required-message="Please enter your Address.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Phone Number:" ng-model="details.phone" required="required" data-validation-required-message="Please enter your email address.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-------------------------------- Table / Oil -------------------------------->
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Want our special oil prepared with indian herbs?</label>
+                            <select class="form-control" ng-model="selectedOil" ng-options="o as (o.title) for o in oil">
+                                <option>{{selectedOil}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Do you have a Massage Table?</label>
+                            <select class="form-control" ng-model="selectedTable" ng-options="t as (t.title) for t in table">
+                                <option>{{selectedTable}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!------------------------------- Special Instructions ---------------------------->
+            <hr />
+
+            <div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <textarea class="form-control resize-none" placeholder="Special Instructions" ng-model="instructions"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!------------------------------- Total Amount ---------------------------->
+            <hr />
+            <div class="row">
+                <div class="col-md-12 text-center text-capitalize">
+                    <div class="form-group">
+                        <div>
+                            <h3>Total Cost: {{selectedTable.value + selectedOil.value + selectedArea.value}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!------------------------------- New/Return Radio Customer ---------------------------->
+            <hr />
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group" data-toggle="buttons">
+                        <input type="radio" name="options" id="newCust" value='new'>New Customer
+                        <input type="radio" name="options" id="returnCust" value='return' checked>Returning Customer
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <!------------------------------- New Customer ---------------------------->
+
+            <div class="new" style="display:none">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="First Name:" ng-model="firstName" data-validation-required-message="Please enter your first name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Last Name:" ng-model="lastName" data-validation-required-message="Please enter your last name.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <select class="form-control" ng-model="gender" data-validation-required-message="Please input your gender.">
+                                <option value="" disabled selected>Gender:</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password:" ng-model="password" data-validation-required-message="Please enter your password.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Reenter Password:" ng-model="rePassword" data-validation-required-message="Please reenter your password.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Address:" ng-model="address" data-validation-required-message="Please enter your Address.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email address:" ng-model="email" data-validation-required-message="Please enter your email address.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6"></div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary form-control" ng-click="signUp()">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!------------------------------- Return Customer ---------------------------->
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                </div>
+                <div class="return">
+                    <!------Button trigger modal ------>
+                    <button type="button" class="btn btn-primary col-md-4" data-toggle="modal" data-target="#myModal">
+                        Login
+                    </button>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <hr />
+            <!------------------------------- Book FINAL ---------------------------->
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                </div>
+                <div class="bookFinal">
+                    <!------Button trigger modal ------>
+                    <button type="button" ng-click="book(details)" class="btn btn-danger col-md-4">
+                        || BOOK ||
+                    </button>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+
+
+
+            <!------------------Footer---------------------->
+            <br />
+            <hr />
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="copyright">Copyright &copy; MASSAGE 2015</span>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="list-inline social-buttons">
+                                <li>
+                                    <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <ul class="list-inline quicklinks">
+                                <li>
+                                    <a href="http://en.wikipedia.org/wiki/Privacy_policy" target="_blank">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="http://opensource.org/licenses/MIT" target="_blank">Terms of Use</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type="radio"]').click(function () {
+            if ($(this).attr("value") == "new") {
+                $(".return").hide();
+                $(".new").show();
+            }
+            if ($(this).attr("value") == "return") {
+                $(".new").hide();
+                $(".return").show();
+            }
+        });
+    });
+</script>
